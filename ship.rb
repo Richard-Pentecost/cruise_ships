@@ -1,10 +1,14 @@
 class Ship
-  attr_accessor :starting_port
+  attr_accessor :current_port
   def initialize(port)
-    @starting_port = port
+    @current_port = port
   end
 
   def set_sail
-    @starting_port = ''
+    @current_port = ''
+  end
+
+  def dock(port)
+    @current_port = port
   end
 end
