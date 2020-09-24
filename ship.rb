@@ -7,6 +7,9 @@ class Ship
   end
 
   def set_sail
+    if itinerary.ports.index(@current_port) == itinerary.ports.length - 1
+      raise Exception.new 'End of itinerary reached'
+    end
     @previous_port = @current_port
     @current_port = ''
   end
