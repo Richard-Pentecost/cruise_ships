@@ -8,4 +8,8 @@ class Port
   def add_ship(ship)
     @ships << ship
   end
+
+  def remove_ship(ship)
+    ships.delete(ship)
+  end
 end

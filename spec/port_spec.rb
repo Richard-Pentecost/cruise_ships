@@ -9,7 +9,7 @@ describe Port do
       expect(calais.name).to eq('Calais')
     end
 
-    it 'adds ships to the port' do
+    it 'adds a ship to a port' do
       dover = described_class.new('Dover')
       calais = described_class.new('Calais')
       portsmouth = described_class.new('Portsmouth')
@@ -19,6 +19,19 @@ describe Port do
       ship.dock
       calais.add_ship(ship)
       expect(calais.ships).to include(ship)
+    end
+
+    it 'removes a ship from a port' do
+      dover = described_class.new('Dover')
+      calais = described_class.new('Calais')
+      portsmouth = described_class.new('Portsmouth')
+      itinerary = Itinerary.new([dover, calais, portsmouth])
+      ship = Ship.new(itinerary)
+      ship.set_sail
+      ship.dock
+      calais.add_ship(ship)
+      calais.remove_ship(ship)
+      expect(calais.ships).to_not include(ship)
     end
   end
 end
