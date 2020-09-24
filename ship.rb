@@ -1,7 +1,8 @@
 class Ship
-  attr_accessor :current_port, :previous_port
-  def initialize(port)
-    @current_port = port
+  attr_accessor :itinerary, :current_port, :previous_port
+  def initialize(itinerary)
+    @itinerary = itinerary
+    @current_port = itinerary.ports[0]
     @previous_port = nil
   end
 
@@ -10,7 +11,8 @@ class Ship
     @current_port = ''
   end
 
-  def dock(port)
-    @current_port = port
+  def dock
+    index = @itinerary.ports.index(@previous_port)
+    @current_port = @itinerary.ports[index + 1]
   end
 end
