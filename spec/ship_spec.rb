@@ -19,7 +19,7 @@ describe Ship do
       itinerary = Itinerary.new([dover, calais])
       ship = described_class.new(itinerary)
       
-      expect(ship.current_port.ships).to include(ship)
+      expect(dover.ships).to include(ship)
     end
 
     it 'initiates a ship with a previous port of nil' do
@@ -41,7 +41,7 @@ describe Ship do
 
       expect(ship.previous_port).to be(dover)
       expect(ship.current_port).to eq('')
-      expect(ship.previous_port.ships).to_not include(ship)
+      expect(dover.ships).to_not include(ship)
     end
 
     it 'can dock at a different port' do
@@ -54,7 +54,7 @@ describe Ship do
       ship.dock
 
       expect(ship.current_port).to be(calais)
-      expect(ship.current_port.ships).to include(ship)
+      expect(calais.ships).to include(ship)
     end
 
     it "can't sail further than it's last port in the itinerary" do
@@ -72,7 +72,3 @@ describe Ship do
 
   end
 end
-
-# it 'returns an error if integer is 0' do
-#   expect { described_class.new.wrap('', 0) }.to raise_error(ArgumentError)
-# end   
