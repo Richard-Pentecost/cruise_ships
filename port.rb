@@ -10,6 +10,7 @@ class Port
   end
 
   def remove_ship(ship)
-    ships.delete(ship)
+    ship_index = ships.index(ship)
+    ships.delete_at(ship_index)
   end
 end

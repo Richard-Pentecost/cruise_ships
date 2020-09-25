@@ -1,6 +1,4 @@
 require_relative '../port'
-require_relative '../ship'
-require_relative '../itinerary'
 
 describe Port do
   context 'port' do
@@ -11,27 +9,23 @@ describe Port do
 
     it 'adds a ship to a port' do
       dover = described_class.new('Dover')
-      calais = described_class.new('Calais')
-      portsmouth = described_class.new('Portsmouth')
-      itinerary = Itinerary.new([dover, calais, portsmouth])
-      ship = Ship.new(itinerary)
-      ship.set_sail
-      ship.dock
-      calais.add_ship(ship)
-      expect(calais.ships).to include(ship)
+      ship = {}
+
+      dover.add_ship(ship)
+      expect(dover.ships).to include(ship)
     end
 
     it 'removes a ship from a port' do
       dover = described_class.new('Dover')
-      calais = described_class.new('Calais')
-      portsmouth = described_class.new('Portsmouth')
-      itinerary = Itinerary.new([dover, calais, portsmouth])
-      ship = Ship.new(itinerary)
-      ship.set_sail
-      ship.dock
-      calais.add_ship(ship)
-      calais.remove_ship(ship)
-      expect(calais.ships).to_not include(ship)
+      titanic = {ship: 'Titanic'}
+      queenMary = {ship: 'Queen Mary'}
+
+      dover.add_ship(titanic)
+      dover.add_ship(queenMary)
+      dover.remove_ship(titanic)
+ 
+      expect(dover.ships).to_not include(titanic)
+      expect(dover.ships).to eq([queenMary])
     end
   end
 end
